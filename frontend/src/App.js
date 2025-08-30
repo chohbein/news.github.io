@@ -13,7 +13,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/cards')
+    axios.get('https://news-github-io.onrender.com/api/cards')
       .then(response => {
         console.log('Fetched articles:', response.data);
         const grouped = response.data.reduce((acc, article) => {
