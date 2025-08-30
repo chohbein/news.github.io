@@ -2,7 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://news-github-io.onrender.com'],
+  origin: ['http://localhost:3000', 'https://news-github-io-front.onrender.com'],
   credentials: true
 };
 
