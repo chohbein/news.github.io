@@ -1,0 +1,73 @@
+/* Lighter background for the search page */
+.search-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #3a3a4d; /* Lighter background than the header */
+  }
+  
+  /* Search form styling */
+  .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack the elements vertically */
+    width: 100%;
+  }
+  
+  /* Search input field */
+  .search-input {
+    width: 50%; /* Large width similar to Google's search input */
+    max-width: 600px;
+    padding: 15px;
+    font-size: 18px; /* Bigger font for easier readability */
+    border-radius: 24px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-bottom: 20px; /* Add some space below the input */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Focus effect for search input */
+  .search-input:focus {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle shadow on focus */
+  }
+  
+  /* Search button */
+  .search-button {
+    padding: 10px 30px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Search button hover effect */
+  .search-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Style adjustments for any potential search results */
+  .search-results {
+    margin-top: 40px; /* Space above the results */
+    text-align: left;
+  }
+  
+  /* Header styling stays the same */
+  .app-header {
+    display: flex;
+    justify-content: space-between; /* Ensures space between logo and nav links */
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #2a2a3b; /* Same header color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
