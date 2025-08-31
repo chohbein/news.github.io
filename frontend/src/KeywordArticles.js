@@ -12,7 +12,7 @@ function KeywordArticles() {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/articles-by-keywords', {
+        const response = await fetch('https://news-github-io.onrender.com/api/articles-by-keywords', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ keywords: [keyword] }),
