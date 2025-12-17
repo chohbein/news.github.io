@@ -7,19 +7,29 @@ function KeywordArticles() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Force page background
+  useEffect(() => {
+    const original = document.body.style.backgroundColor;
+    document.body.style.backgroundColor = '#2C2F33';
+    return () => {
+      document.body.style.backgroundColor = original; // reset on unmount
+    };
+  }, []);
+
   useEffect(() => {
     async function fetchArticles() {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('https://news-github-io.onrender.com/api/articles-by-keywords', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ keywords: [keyword] }),
-        });
-        if (!response.ok) {
-          throw new Error('Failed to fetch articles');
-        }
+        const response = await fetch(
+          'https://news-github-io.onrender.com/api/articles-by-keywords',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ keywords: [keyword] }),
+          }
+        );
+        if (!response.ok) throw new Error('Failed to fetch articles');
         const data = await response.json();
         setArticles(data.articles);
       } catch (err) {
@@ -31,42 +41,32 @@ function KeywordArticles() {
     fetchArticles();
   }, [keyword]);
 
-  console.log("Articles:", articles, "Loading:", loading, "Error:", error);
-
   if (loading) return <p>Loading articles for "{keyword}"...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
   if (articles.length === 0) return <p>No articles found for "{keyword}"</p>;
 
   return (
-  <div
-    style={{
-      padding: '20px',
-      color: 'white',
-      backgroundColor: '#2C2F33',  // <- this is your background
-      minHeight: '100vh'           // <- makes it cover full screen
-    }}
-  >
-    <h2>Articles with keyword: "{keyword}"</h2>
-    <ul style={{ listStyle: 'none', padding: 0 }}>
-      {articles.map(article => (
-        <li key={article.article_id} style={{ marginBottom: '15px' }}>
-          <a
-            href={article.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'lightblue', fontWeight: 'bold' }}
-          >
-            {article.title}
-          </a>
-          <span style={{ marginLeft: '10px', fontSize: '0.9em' }}>
-            — {new Date(article.date).toLocaleDateString()}
-          </span>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
-
+    <div style={{ padding: '20px', color: 'white', minHeight: '100vh' }}>
+      <h2>Articles with keyword: "{keyword}"</h2>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {articles.map(article => (
+          <li key={article.article_id} style={{ marginBottom: '15px' }}>
+            <a
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'lightblue', fontWeight: 'bold' }}
+            >
+              {article.title}
+            </a>
+            <span style={{ marginLeft: '10px', fontSize: '0.9em' }}>
+              — {new Date(article.date).toLocaleDateString()}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default KeywordArticles;
-
