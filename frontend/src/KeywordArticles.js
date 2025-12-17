@@ -38,22 +38,35 @@ function KeywordArticles() {
   if (articles.length === 0) return <p>No articles found for "{keyword}"</p>;
 
   return (
-    <div style={{ padding: '20px', color: 'white' }}>
-      <h2>Articles with keyword: "{keyword}"</h2>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {articles.map(article => (
-          <li key={article.article_id} style={{ marginBottom: '15px' }}>
-            <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ color: 'lightblue', fontWeight: 'bold' }}>
-              {article.title}
-            </a>
-            <span style={{ marginLeft: '10px', fontSize: '0.9em' }}>
-              — {new Date(article.date).toLocaleDateString()}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+  <div
+    style={{
+      padding: '20px',
+      color: 'white',
+      backgroundColor: '#2C2F33',  // <- this is your background
+      minHeight: '100vh'           // <- makes it cover full screen
+    }}
+  >
+    <h2>Articles with keyword: "{keyword}"</h2>
+    <ul style={{ listStyle: 'none', padding: 0 }}>
+      {articles.map(article => (
+        <li key={article.article_id} style={{ marginBottom: '15px' }}>
+          <a
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'lightblue', fontWeight: 'bold' }}
+          >
+            {article.title}
+          </a>
+          <span style={{ marginLeft: '10px', fontSize: '0.9em' }}>
+            — {new Date(article.date).toLocaleDateString()}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 
 export default KeywordArticles;
+
