@@ -51,7 +51,7 @@ app.get('/api/cards', async (req, res) => {
       FROM articles a2 
       JOIN junct_simart_articles jsa2 ON jsa2.article_id = a2.article_id
       WHERE jsa2.simart_id = sa.simart_id
-      AND a2.date >= NOW() - INTERVAL '2 days'
+      AND a2.date >= NOW() - INTERVAL '7 days'
     )
   GROUP BY sa.simart_id, sa.similar_weight, a.article_id, a.title, a.url, a.date, a.article_section, a.section_url, a.article_source, a.image, a.subheading
   ORDER BY a.date DESC;`;
@@ -121,3 +121,4 @@ app.post('/api/articles-by-keywords', async (req, res) => {
 app.listen(port, () => {
   console.log(`Backend server running on port ${port}`);
 });
+
